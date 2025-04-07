@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<ruleset name="JSONExport">
+	<description>PHP Coding Standards for the JSON Export plugin.</description>
+
+	<!-- Set the default standard -->
+	<rule ref="WordPress"/>
+
+	<!-- Exclude specific sniffs -->
+	<!-- Example: <rule ref="Generic.Commenting.Todo.Found"> -->
+	<!--   <severity>0</severity> -->
+	<!-- </rule> -->
+
+	<!-- Exclude the underscore prefix warning for methods -->
+	<rule ref="PSR2.Methods.MethodDeclaration.Underscore">
+		<severity>0</severity>
+	</rule>
+
+	<!-- Check PHP files in the php directory -->
+	<file>./php</file>
+	<file>./json-export.php</file>
+
+	<!-- Exclude paths -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<!-- Pass command line arguments to PHPCS -->
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/> <!-- Show sniff codes in reports -->
+
+	<!-- Set the text domain for WordPress-specific checks -->
+	<config name="text_domain" value="json-export"/>
+
+	<!-- Set minimum supported WordPress version -->
+	<config name="minimum_supported_wp_version" value="5.0"/>
+
+</ruleset>

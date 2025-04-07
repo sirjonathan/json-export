@@ -1,0 +1,29 @@
+{
+    "name": "jonathanwold/json-export",
+    "description": "Exports WordPress posts as JSON, with formatting options for use with LLMs.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Jonathan Wold",
+            "homepage": "https://jonathanwold.com"
+        }
+    ],
+    "autoload": {
+        "classmap": ["php/"]
+    },
+    "require-dev": {
+        "phpcompatibility/phpcompatibility-wp": "*",
+        "squizlabs/php_codesniffer": "*",
+        "wp-coding-standards/wpcs": "^3.1",
+        "dealerdirect/phpcodesniffer-composer-installer": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require": {
+        "league/html-to-markdown": "^5.1"
+    }
+}
