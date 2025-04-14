@@ -37,3 +37,27 @@ GPL v2 or later
 ## Credits
 
 Originally inspired by a plugin by Doug Belshaw, rewritten with modern standards by Jonathan Wold using Windsurf and Claude 3.7 Sonnet with Gemini 2.5 Pro.
+
+## Development
+
+This plugin uses Composer for dependency management.
+
+If you’re developing or contributing:
+
+1. Install Composer (https://getcomposer.org/)
+2. Run `composer install` in the plugin directory to install dependencies.
+
+For production or release builds, use:
+
+    composer install --no-dev
+
+This will install only the dependencies needed to run the plugin, excluding development tools.
+
+## Changelog
+
+### 1.0.1
+- Addressed feedback regarding unique prefixes (see issue #2, props to @lukecarbis)
+- Removed dev dependencies from /vendor
+
+### 1.0.0
+- Initial release

@@ -6,7 +6,7 @@
  * @since   1.0.0
  */
 
-namespace JSONExport\PHP;
+namespace Calm\JSONExport;
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -109,7 +109,7 @@ class Exporter {
 				'category_id'          => isset( $args['category__in'] ) && ! empty( $args['category__in'] ) ? reset( $args['category__in'] ) : null,
 			),
 			'wp_version'     => get_bloginfo( 'version' ),
-			'plugin_version' => JSON_EXPORT_VERSION,
+			'plugin_version' => CALM_JSON_EXPORT_VERSION,
 		);
 
 		// Combine metadata and posts into a single array.
@@ -119,7 +119,7 @@ class Exporter {
 		);
 
 		// Allow filtering of the exported data.
-		$export_data = apply_filters( 'json_export_data', $export_data, $args );
+		$export_data = apply_filters( 'calm_json_export_data', $export_data, $args );
 
 		return array(
 			'data'     => $export_data,

@@ -6,7 +6,7 @@
  * @since   1.0.0
  */
 
-namespace JSONExport\PHP;
+namespace Calm\JSONExport;
 
 use League\HTMLToMarkdown\HtmlConverter;
 

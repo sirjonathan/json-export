@@ -5,7 +5,7 @@
  * @package JSONExport
  */
 
-namespace JSONExport\PHP;
+namespace Calm\JSONExport;
 
 /**
  * Core plugin class
@@ -50,6 +50,6 @@ final class JSONExport {
 	 * Initialize the plugin.
 	 */
 	private function _init(): void {
-		$this->admin = new Admin( JSON_EXPORT_TEXT_DOMAIN );
+		$this->admin = new Admin( CALM_JSON_EXPORT_TEXT_DOMAIN );
 	}
 }

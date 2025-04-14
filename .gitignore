@@ -3,3 +3,7 @@
 
 # Logs
 *.log
+
+# Local WordPress development environment
+.wp-env.json
+.wp-env.override.json

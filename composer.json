@@ -1,5 +1,5 @@
 {
-    "name": "jonathanwold/json-export",
+    "name": "calm/json-export",
     "description": "Exports WordPress posts as JSON, with formatting options for use with LLMs.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",

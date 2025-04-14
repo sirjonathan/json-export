@@ -8,7 +8,7 @@
  * @since   1.0.0
  */
 
-namespace JSONExport\PHP;
+namespace Calm\JSONExport;
 
 /**
  * Handles admin-specific functionality.
@@ -56,7 +56,7 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
 		// Add plugin action links.
-		add_filter( 'plugin_action_links_' . JSON_EXPORT_BASENAME, array( $this, 'add_plugin_action_links' ) );
+		add_filter( 'plugin_action_links_' . CALM_JSON_EXPORT_BASENAME, array( $this, 'add_plugin_action_links' ) );
 	}
 
 	/**
@@ -73,9 +73,9 @@ class Admin {
 		// Enqueue JavaScript.
 		wp_enqueue_script(
 			$this->plugin_name . '-admin-script',
-			JSON_EXPORT_URL . 'assets/js/admin.js',
+			CALM_JSON_EXPORT_URL . 'assets/js/admin.js',
 			array( 'jquery' ), // Dependency.
-			JSON_EXPORT_VERSION,
+			CALM_JSON_EXPORT_VERSION,
 			true // Load in footer.
 		);
 	}
@@ -85,8 +85,8 @@ class Admin {
 	 */
 	public function add_admin_menu() {
 		add_management_page(
-			esc_html__( 'JSON Export', 'json-export' ),
-			esc_html__( 'JSON Export', 'json-export' ),
+			esc_html__( 'JSON Export', 'calm-json-export' ),
+			esc_html__( 'JSON Export', 'calm-json-export' ),
 			'export',
 			$this->plugin_name,
 			array( $this, 'display_admin_page' )
@@ -99,39 +99,39 @@ class Admin {
 	public function display_admin_page() {
 		?>
 		<div class="wrap">
-			<h1><?php echo esc_html__( 'JSON Export', 'json-export' ); ?></h1>
+			<h1><?php echo esc_html__( 'JSON Export', 'calm-json-export' ); ?></h1>
 
-			<p><?php esc_html_e( 'When you click the button below, WordPress will generate a JSON file containing your selected posts for you to save to your computer.', 'json-export' ); ?></p>
+			<p><?php esc_html_e( 'When you click the button below, WordPress will generate a JSON file containing your selected posts for you to save to your computer.', 'calm-json-export' ); ?></p>
 
 			<form method="post" action="">
-				<?php wp_nonce_field( 'json_export_nonce', 'json_export_nonce' ); ?>
+				<?php wp_nonce_field( 'calm_json_export_nonce', 'calm_json_export_nonce' ); ?>
 
-				<h2><?php esc_html_e( 'Choose what to export', 'json-export' ); ?></h2>
+				<h2><?php esc_html_e( 'Choose what to export', 'calm-json-export' ); ?></h2>
 
 				<fieldset>
-					<legend class="screen-reader-text"><?php esc_html_e( 'Content to export', 'json-export' ); ?></legend>
+					<legend class="screen-reader-text"><?php esc_html_e( 'Content to export', 'calm-json-export' ); ?></legend>
 					<p>
 						<label>
 							<input type="radio" name="content_selection" value="all" checked="checked" aria-describedby="all-posts-desc" />
-							<?php esc_html_e( 'All Posts', 'json-export' ); ?>
+							<?php esc_html_e( 'All Posts', 'calm-json-export' ); ?>
 						</label>
 					</p>
-					<p class="description" id="all-posts-desc"><?php esc_html_e( 'Exports all published posts.', 'json-export' ); ?></p>
+					<p class="description" id="all-posts-desc"><?php esc_html_e( 'Exports all published posts.', 'calm-json-export' ); ?></p>
 
 					<p>
 						<label>
 							<input type="radio" name="content_selection" value="category" aria-describedby="category-posts-desc" />
-							<?php esc_html_e( 'Posts from Category', 'json-export' ); ?>
+							<?php esc_html_e( 'Posts from Category', 'calm-json-export' ); ?>
 						</label>
 					</p>
-					<p class="description" id="category-posts-desc"><?php esc_html_e( 'Exports published posts only from the selected category.', 'json-export' ); ?></p>
+					<p class="description" id="category-posts-desc"><?php esc_html_e( 'Exports published posts only from the selected category.', 'calm-json-export' ); ?></p>
 
 					<div id="category-selection" class="export-filters" style="display: none;">
-						<label for="category-select"><?php esc_html_e( 'Select Category:', 'json-export' ); ?></label>
+						<label for="category-select"><?php esc_html_e( 'Select Category:', 'calm-json-export' ); ?></label>
 						<?php
 						wp_dropdown_categories(
 							array(
-								'show_option_none' => esc_html__( 'Select a Category', 'json-export' ),
+								'show_option_none' => esc_html__( 'Select a Category', 'calm-json-export' ),
 								'name'             => 'category',
 								'id'               => 'category-select',
 								'orderby'          => 'name',
@@ -144,29 +144,29 @@ class Admin {
 					</div>
 				</fieldset>
 
-				<h2><?php esc_html_e( 'Formatting options', 'json-export' ); ?></h2>
+				<h2><?php esc_html_e( 'Formatting options', 'calm-json-export' ); ?></h2>
 				<fieldset>
-					<legend class="screen-reader-text"><?php esc_html_e( 'LLM Formatting Options', 'json-export' ); ?></legend>
+					<legend class="screen-reader-text"><?php esc_html_e( 'LLM Formatting Options', 'calm-json-export' ); ?></legend>
 					<p>
 						<label>
 							<input type="checkbox" name="llm_friendly" value="1" checked="checked"/>
-							<?php esc_html_e( 'LLM Friendly Formatting', 'json-export' ); ?>
+							<?php esc_html_e( 'LLM Friendly Formatting', 'calm-json-export' ); ?>
 						</label>
 					</p>
-					<p class="description"><?php esc_html_e( 'Converts HTML to Markdown, better optimizing it for use by Large Language Models (LLMs).', 'json-export' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Converts HTML to Markdown, better optimizing it for use by Large Language Models (LLMs).', 'calm-json-export' ); ?></p>
 
 					<p>
 						<label>
 							<input type="checkbox" name="llm_custom_excerpts_only" value="1" checked="checked" />
-							<?php esc_html_e( 'Custom Excerpts Only', 'json-export' ); ?>
+							<?php esc_html_e( 'Custom Excerpts Only', 'calm-json-export' ); ?>
 						</label>
 					</p>
-					<p class="description"><?php esc_html_e( 'Only include the excerpt field if a custom excerpt exists for the post.', 'json-export' ); ?></p>
+					<p class="description"><?php esc_html_e( 'Only include the excerpt field if a custom excerpt exists for the post.', 'calm-json-export' ); ?></p>
 
 				</fieldset>
 
 				<p class="submit">
-					<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo esc_attr__( 'Download JSON File', 'json-export' ); ?>" />
+					<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo esc_attr__( 'Download JSON File', 'calm-json-export' ); ?>" />
 				</p>
 			</form>
 		</div>
@@ -183,7 +183,7 @@ class Admin {
 		}
 
 		// Security check.
-		if ( ! isset( $_POST['json_export_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['json_export_nonce'] ) ), 'json_export_nonce' ) ) {
+		if ( ! isset( $_POST['calm_json_export_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['calm_json_export_nonce'] ) ), 'calm_json_export_nonce' ) ) {
 			return;
 		}
 
@@ -204,7 +204,7 @@ class Admin {
 			$category    = get_term( $category_id, 'category' );
 
 			if ( ! $category || is_wp_error( $category ) ) {
-				wp_die( esc_html__( 'Invalid category selected.', 'json-export' ), '', array( 'response' => 400 ) );
+				wp_die( esc_html__( 'Invalid category selected.', 'calm-json-export' ), '', array( 'response' => 400 ) );
 			}
 			$export_args['category__in'] = array( $category_id );
 		} else {
@@ -234,7 +234,7 @@ class Admin {
 		$settings_link = sprintf(
 			'<a href="%s">%s</a>',
 			admin_url( 'tools.php?page=' . $this->plugin_name ),
-			esc_html__( 'Export', 'json-export' )
+			esc_html__( 'Export', 'calm-json-export' )
 		);
 
 		array_unshift( $links, $settings_link );
